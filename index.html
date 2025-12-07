@@ -1,0 +1,1771 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8"/>
+<title>Photo By.เด็กRIE</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:"Poppins",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:radial-gradient(circle at top,#4d1800 0,#000000 55%,#000000 100%);
+  color:#e5e7eb;
+  min-height:150vh;
+  display:flex;
+  flex-direction:column;
+}
+header{
+  position:relative;
+  height:600px;
+  padding:28px 40px 32px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:20px;
+  background:url("https://scontent.fbkk6-1.fna.fbcdn.net/v/t39.30808-6/513968512_749792091036526_9114442770890517195_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeGOsbTgs65rUXN-jReY5BwR2KbL4iHp-fHYpsviIen58Ud7pd0mEnQW-JpFsdek5wLF1T3NDDHID0RDWjYZRrha&_nc_ohc=1lGEicvcTToQ7kNvwFrXXiK&_nc_oc=AdmmXWKOvRNp2MgFiD-lwJDs1bz3DsoE01OxnmbRIh9i7pm8UIkDZCgh-BA2rW2mlz8&_nc_zt=23&_nc_ht=scontent.fbkk6-1.fna&_nc_gid=Nl7lT9W-uazl-r1E_4PVgg&oh=00_Afm1ZhP5DG5hjjBFxGV5Mxh8JhjwMeCvdB63LPSnuqY50Q&oe=693A8DD5") center/cover no-repeat;
+  color:#f9fafb;
+  box-shadow:0 18px 40px rgba(0,0,0,.75);
+}
+header::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,.7),rgba(0,0,0,.78) 40%,rgba(0,0,0,.9) 100%);
+  pointer-events:none;
+}
+.header-left{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.header-title{
+  font-size:34px;
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.header-title span{
+  background:linear-gradient(120deg,#fee2e2,#fb923c,#f97316,#fed7aa);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  text-shadow:0 0 25px rgba(249,115,22,.55);
+}
+.header-sub{font-size:13px;color:#e5e7eb}
+.header-tagline{
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:#fed7aa;
+}
+.top-right{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:12px;
+}
+#userInfo{
+  padding:4px 10px;
+  border-radius:999px;
+  border:1px solid rgba(148,163,184,.55);
+  background:rgba(15,23,42,.9);
+  max-width:200px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.login-btn,.logout-btn{
+  background:transparent;
+  border:1px solid rgba(148,163,184,.8);
+  color:#f9fafb;
+  padding:7px 16px;
+  border-radius:999px;
+  cursor:pointer;
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transition:background .15s,border-color .15s,transform .08s,box-shadow .15s;
+}
+.login-btn span:last-child,.logout-btn span:last-child{font-size:13px}
+.login-btn:hover,.logout-btn:hover{
+  border-color:#f97316;
+  background:rgba(15,23,42,.96);
+  box-shadow:0 0 0 1px rgba(249,115,22,.35),0 10px 20px rgba(0,0,0,.8);
+  transform:translateY(-1px);
+}
+.login-btn:active,.logout-btn:active{transform:translateY(0);box-shadow:none}
+main{
+  flex:1;
+  padding:26px 20px 30px;
+  max-width:1200px;
+  width:100%;
+  margin:-40px auto 0;
+}
+.layout{display:grid;grid-template-columns:minmax(0,1fr)}
+.albums-panel,.album-view{
+  border-radius:26px;
+  border:1px solid rgba(248,250,252,.14);
+  background:radial-gradient(circle at 0 0,rgba(249,115,22,.18),rgba(15,23,42,.96));
+  backdrop-filter:blur(20px);
+  box-shadow:0 28px 70px rgba(0,0,0,.85);
+  padding:20px 22px 18px;
+  min-height:260px;
+}
+#albumsSection{display:block}
+#albumViewSection{display:none}
+.section-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  margin-bottom:10px;
+}
+.section-title{font-size:18px;font-weight:600}
+.section-sub{font-size:11px;color:#e5e7eb}
+.btn-primary{
+  background:linear-gradient(135deg,#f97316,#ea580c);
+  color:#0b1120;
+  border:none;
+  border-radius:999px;
+  padding:7px 16px;
+  font-size:11px;
+  cursor:pointer;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  box-shadow:0 12px 30px rgba(249,115,22,.7);
+  transition:transform .12s,box-shadow .12s,filter .12s;
+}
+.btn-primary span:last-child{font-size:14px}
+.btn-primary:hover{filter:brightness(1.05);transform:translateY(-1px)}
+.btn-primary:active{transform:translateY(0);box-shadow:0 8px 22px rgba(249,115,22,.6)}
+.albums-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+  gap:16px;
+  margin-top:14px;
+}
+.album-card{
+  position:relative;
+  border-radius:18px;
+  border:1px solid rgba(31,41,55,.96);
+  background:rgba(15,23,42,.96);
+  overflow:hidden;
+  cursor:pointer;
+  transition:transform .12s,box-shadow .12s,border-color .12s,background .12s;
+}
+.album-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(249,115,22,.85);
+  box-shadow:0 20px 45px rgba(0,0,0,.95);
+  background:radial-gradient(circle at 0 0,rgba(249,115,22,.16),rgba(15,23,42,.98));
+}
+.album-thumb{
+  width:100%;
+  aspect-ratio:4/3;
+  position:relative;
+  background:#020617;
+  overflow:hidden;
+}
+.album-thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.album-thumb-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,.0));
+}
+.album-thumb-label{
+  position:absolute;
+  left:10px;
+  bottom:8px;
+  font-size:11px;
+  padding:3px 9px;
+  border-radius:999px;
+  background:rgba(15,23,42,.9);
+  border:1px solid rgba(249,115,22,.9);
+  color:#fed7aa;
+}
+.album-info{
+  padding:9px 11px 9px;
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
+.album-title{
+  font-size:13px;
+  font-weight:500;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.album-meta{
+  font-size:11px;
+  color:#9ca3af;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:6px;
+}
+.album-meta span{color:#f97316}
+.empty-text{font-size:12px;color:#f9fafb;padding:12px 4px 6px}
+.album-delete-btn{
+  position:absolute;
+  top:7px;
+  right:7px;
+  width:22px;
+  height:22px;
+  border-radius:999px;
+  border:1px solid rgba(248,113,113,.9);
+  background:rgba(127,29,29,.9);
+  color:#fee2e2;
+  font-size:11px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow:0 8px 18px rgba(0,0,0,.8);
+}
+.album-delete-btn:hover{background:#ef4444;border-color:#fecaca}
+.album-rename-btn{
+  position:absolute;
+  top:7px;
+  right:34px;
+  width:22px;
+  height:22px;
+  border-radius:999px;
+  border:1px solid rgba(148,163,184,.9);
+  background:rgba(15,23,42,.95);
+  color:#e5e7eb;
+  font-size:13px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow:0 8px 18px rgba(0,0,0,.8);
+  transition:background .12s,border-color .12s,transform .1s;
+}
+.album-rename-btn:hover{
+  background:#0f172a;
+  border-color:#facc15;
+  transform:translateY(-1px);
+}
+.share-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  background:linear-gradient(135deg,#020617,#111827);
+  border-radius:999px;
+  border:1px solid rgba(249,115,22,.95);
+  padding:4px 10px;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:#f97316;
+  cursor:pointer;
+  box-shadow:0 10px 24px rgba(15,23,42,.9);
+  animation:sharePulse 1.8s infinite;
+  transition:transform .1s,box-shadow .1s,filter .1s;
+}
+.share-btn img{
+  width:13px;
+  height:13px;
+  display:block;
+}
+.share-btn:hover{
+  filter:brightness(1.05);
+  transform:translateY(-1px);
+  box-shadow:0 14px 32px rgba(15,23,42,1);
+}
+.share-btn:active{
+  transform:translateY(0);
+  box-shadow:0 6px 16px rgba(15,23,42,.9);
+}
+.album-share-inline{
+  padding:2px 9px;
+  font-size:9px;
+}
+.back-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:8px;
+}
+.back-link{
+  font-size:11px;
+  color:#e5e7eb;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+}
+.back-link .icon{
+  width:18px;
+  height:18px;
+  border-radius:999px;
+  border:1px solid rgba(148,163,184,.7);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:10px;
+}
+.album-header-line{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:10px;
+  margin-bottom:8px;
+}
+.album-header-main h2{font-size:19px;font-weight:600}
+.album-header-sub{font-size:11px;color:#e5e7eb;margin-top:3px}
+.album-header-actions{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:6px;
+}
+.upload-hint{
+  font-size:10px;
+  color:#fee2e2;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  text-align:right;
+}
+.album-header-buttons{
+  display:flex;
+  gap:6px;
+  justify-content:flex-end;
+}
+.header-select-btn,
+.header-delete-btn{
+  background:rgba(15,23,42,.9);
+  color:#e5e7eb;
+  border-radius:999px;
+  border:1px solid rgba(148,163,184,.9);
+  padding:5px 12px;
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  box-shadow:0 8px 20px rgba(0,0,0,.85);
+  transition:background .12s,border-color .12s,transform .08s,box-shadow .12s;
+}
+.header-select-btn:hover,
+.header-delete-btn:hover{
+  background:#020617;
+  border-color:#f97316;
+  box-shadow:0 12px 26px rgba(0,0,0,.95);
+  transform:translateY(-1px);
+}
+.header-delete-btn{
+  border-color:rgba(248,113,113,.9);
+  color:#fee2e2;
+}
+.photos-grid{
+  margin-top:16px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:11px;
+}
+.photo-card{
+  position:relative;
+  border-radius:15px;
+  overflow:hidden;
+  border:1px solid rgba(31,41,55,.95);
+  background:rgba(15,23,42,.96);
+}
+.photo-card img{
+  width:100%;
+  display:block;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  opacity:0;
+  transform:scale(1.04);
+  transition:opacity .3s ease,transform .3s ease;
+}
+.photo-card img.photo-loaded{
+  opacity:1;
+  transform:scale(1);
+}
+.photo-meta{
+  font-size:10px;
+  color:#e5e7eb;
+  padding:4px 7px 6px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:4px;
+}
+.photo-meta .index{color:#fee2e2}
+.photo-card.skeleton{
+  border-color:rgba(30,64,175,.8);
+  background:linear-gradient(90deg,#020617 0,#111827 50%,#020617 100%);
+  background-size:400px 100%;
+  animation:shimmer 1.2s infinite;
+}
+.photo-card.skeleton img{display:none}
+.photo-card.skeleton .photo-meta{display:none}
+.photo-delete-btn{
+  position:absolute;
+  top:6px;
+  right:6px;
+  width:22px;
+  height:22px;
+  border-radius:999px;
+  border:1px solid rgba(248,113,113,.9);
+  background:rgba(127,29,29,.92);
+  color:#fee2e2;
+  font-size:11px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow:0 10px 22px rgba(0,0,0,.8);
+}
+.photo-delete-btn:hover{background:#ef4444;border-color:#fecaca}
+.photo-select-toggle{
+  position:absolute;
+  left:6px;
+  top:6px;
+  width:24px;
+  height:24px;
+  border-radius:999px;
+  border:1px solid rgba(148,163,184,.9);
+  background:rgba(15,23,42,.9);
+  color:#e5e7eb;
+  font-size:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow:0 10px 22px rgba(0,0,0,.8);
+}
+.photo-select-toggle.selected{
+  background:radial-gradient(circle at 30% 0,#bbf7d0,#22c55e);
+  border-color:#bbf7d0;
+  color:#052e16;
+}
+.photo-card.uploading::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(15,23,42,.6);
+}
+.photo-card.uploading::after{
+  content:"UPLOADING";
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:#fed7aa;
+}
+.upload-card{
+  position:relative;
+  border-radius:15px;
+  border:1px dashed rgba(248,250,252,.5);
+  background:radial-gradient(circle at 0 0,rgba(249,115,22,.18),rgba(15,23,42,.98));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  overflow:hidden;
+  transition:border-color .15s,box-shadow .15s,transform .12s;
+}
+.upload-card-main-icon{
+  width:52px;
+  height:52px;
+  border-radius:999px;
+  background:radial-gradient(circle at 30% 0,#fed7aa,#f97316);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#111827;
+  font-size:32px;
+  box-shadow:0 12px 30px rgba(249,115,22,.7);
+  animation:plusGlow 1.7s infinite;
+}
+.upload-card input{display:none}
+.upload-card.dragover{
+  border-color:#f97316;
+  box-shadow:0 0 30px rgba(248,113,113,.5);
+}
+.upload-card.uploading{
+  animation:pulseBorder 1.4s infinite;
+}
+.upload-card:hover{transform:translateY(-1px)}
+.modal-backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,.85);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:40;
+  animation:backdropFade .18s ease-out;
+}
+.modal{
+  background:#020617;
+  border-radius:18px;
+  padding:16px 18px 14px;
+  width:100%;
+  max-width:320px;
+  border:1px solid rgba(55,65,81,.95);
+  box-shadow:0 24px 55px rgba(0,0,0,.9);
+  font-size:13px;
+  animation:modalFadeIn .2s ease-out;
+}
+.modal-shake{animation:shake .2s ease-in-out;}
+.modal h3{font-size:16px;margin-bottom:10px}
+.field{margin-bottom:8px}
+.field label{
+  display:block;
+  margin-bottom:3px;
+  color:#9ca3af;
+  font-size:12px;
+}
+.field input{
+  width:100%;
+  padding:7px 9px;
+  border-radius:9px;
+  border:1px solid rgba(55,65,81,.95);
+  background:#020617;
+  color:#e5e7eb;
+  font-size:13px;
+  transition:border-color .15s,box-shadow .15s,transform .1s;
+}
+.field input:focus{
+  outline:none;
+  border-color:#f97316;
+  box-shadow:0 0 0 1px rgba(249,115,22,.6);
+  transform:translateY(-1px);
+}
+.modal-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:6px;
+  margin-top:8px;
+}
+.modal-actions .ghost{
+  background:transparent;
+  border:1px solid rgba(148,163,184,.8);
+  color:#e5e7eb;
+  box-shadow:none;
+}
+.error{
+  color:#fb7185;
+  font-size:12px;
+  margin-top:2px;
+  min-height:16px;
+}
+#toastRoot{
+  position:fixed;
+  left:50%;
+  bottom:18px;
+  transform:translateX(-50%);
+  z-index:50;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.toast{
+  min-width:260px;
+  max-width:360px;
+  padding:8px 16px;
+  border-radius:999px;
+  font-size:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(148,163,184,.7);
+  background:rgba(15,23,42,.98);
+  color:#e5e7eb;
+  box-shadow:0 14px 32px rgba(0,0,0,.9);
+  animation:toastIn .23s ease-out;
+}
+.toast-success{
+  border-color:rgba(16,185,129,.7);
+  background:radial-gradient(circle at 0 0,rgba(16,185,129,.25),rgba(15,23,42,.98));
+}
+.toast-error{
+  border-color:rgba(248,113,113,.9);
+  background:radial-gradient(circle at 0 0,rgba(248,113,113,.25),rgba(15,23,42,.98));
+}
+.toast-hide{animation:toastOut .23s ease-in forwards;}
+footer{
+  font-size:10px;
+  color:#e5e7eb;
+  padding:10px 18px 14px;
+  text-align:center;
+  border-top:1px solid rgba(15,23,42,.95);
+  background:#020617;
+  margin-top:auto;
+}
+#viewerRoot{position:fixed;inset:0;pointer-events:none;z-index:60;}
+.viewer-backdrop{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  pointer-events:auto;
+  backdrop-filter:blur(0);
+  animation:viewerBgIn .22s ease-out forwards;
+}
+.viewer-backdrop.viewer-closing{
+  animation:viewerBgOut .22s ease-in forwards;
+}
+.viewer-inner{
+  position:relative;
+  max-width:96vw;
+  max-height:90vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.viewer-topbar{
+  position:absolute;
+  top:12px;
+  right:12px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  z-index:5;
+}
+.viewer-img-wrap{
+  max-width:90vw;
+  max-height:80vh;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 24px 60px rgba(0,0,0,.95);
+}
+.viewer-img{
+  max-width:90vw;
+  max-height:80vh;
+  display:block;
+}
+.viewer-close{
+  width:38px;
+  height:38px;
+  border-radius:999px;
+  border:1px solid rgba(148,163,184,.9);
+  background:rgba(15,23,42,.92);
+  color:#e5e7eb;
+  font-size:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow:0 14px 32px rgba(0,0,0,.85);
+  transition:transform .12s,box-shadow .12s,filter .12s;
+}
+.viewer-close:hover{
+  filter:brightness(1.04);
+  transform:translateY(-1px) scale(1.02);
+  box-shadow:0 18px 40px rgba(0,0,0,1);
+}
+.viewer-close:active{
+  transform:translateY(0) scale(.96);
+  box-shadow:0 10px 24px rgba(0,0,0,.9);
+}
+.viewer-arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:40px;
+  height:40px;
+  border-radius:999px;
+  border:1px solid rgba(148,163,184,.9);
+  background:rgba(15,23,42,.9);
+  color:#e5e7eb;
+  font-size:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+.viewer-arrow-left{left:8px;}
+.viewer-arrow-right{right:8px;}
+.viewer-arrow:hover{background:#111827}
+.viewer-download,
+.viewer-photo-share{
+  border:none;
+}
+.viewer-pill-group{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  padding:3px;
+  border-radius:999px;
+  background:rgba(15,23,42,.9);
+  box-shadow:0 14px 32px rgba(0,0,0,.9);
+  animation:viewerPillBounce 1.4s ease-in-out infinite;
+}
+.viewer-pill-highlight{
+  position:absolute;
+  left:4px;
+  top:50%;
+  transform:translateY(-50%);
+  width:86px;
+  height:30px;
+  border-radius:999px;
+  background:radial-gradient(circle at 0 0,#f97316,#0b1120);
+  opacity:.85;
+  filter:blur(3px);
+  z-index:0;
+  transition:transform .16s ease-out,width .16s ease-out,opacity .16s ease-out;
+}
+.viewer-pill-btn{
+  position:relative;
+  z-index:1;
+  border-radius:999px;
+  font-size:10px;
+  letter-spacing:.16em;
+  padding:7px 14px;
+  text-transform:uppercase;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  transition:transform .09s ease-out,box-shadow .12s ease-out,filter .12s ease-out;
+}
+.viewer-photo-share.viewer-pill-btn{
+  background:#020617;
+  color:#fed7aa;
+  box-shadow:0 0 0 1px rgba(249,115,22,.9);
+}
+.viewer-download.viewer-pill-btn{
+  margin-left:3px;
+  background:linear-gradient(135deg,#fbbf24,#fb923c,#f97316);
+  color:#111827;
+  box-shadow:0 0 0 1px rgba(255,237,213,.9);
+}
+.viewer-pill-btn:hover{
+  filter:brightness(1.05);
+  transform:translateY(-1px);
+  box-shadow:0 12px 26px rgba(0,0,0,.95);
+}
+.viewer-pill-btn:active{
+  transform:translateY(0) scale(.96);
+  box-shadow:0 8px 20px rgba(0,0,0,.9);
+}
+.viewer-photo-delete{
+  width:38px;
+  height:38px;
+  border-radius:999px;
+  border:1px solid rgba(248,113,113,.9);
+  background:radial-gradient(circle at 30% 0,#fecaca,#b91c1c);
+  color:#fee2e2;
+  font-size:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow:0 16px 32px rgba(0,0,0,.85);
+  transition:transform .12s,box-shadow .12s,filter .12s;
+}
+.viewer-photo-delete:hover{
+  filter:brightness(1.05);
+  transform:translateY(-1px) scale(1.03);
+  box-shadow:0 20px 40px rgba(0,0,0,1);
+}
+.viewer-photo-delete:active{
+  transform:translateY(0) scale(.96);
+  box-shadow:0 10px 22px rgba(0,0,0,.9);
+}
+.viewer-fade{
+  animation:viewerFade .22s ease-out;
+}
+.viewer-slide-left{
+  animation:viewerSlideLeft .22s ease-out;
+}
+.viewer-slide-right{
+  animation:viewerSlideRight .22s ease-out;
+}
+@keyframes shimmer{
+  0%{background-position:-200px 0}
+  100%{background-position:200px 0}
+}
+@keyframes modalFadeIn{
+  from{opacity:0;transform:translateY(10px) scale(.98);}
+  to{opacity:1;transform:translateY(0) scale(1);}
+}
+@keyframes backdropFade{
+  from{opacity:0}
+  to{opacity:1}
+}
+@keyframes pulseBorder{
+  0%,100%{box-shadow:0 0 0 0 rgba(249,115,22,.0);}
+  50%{box-shadow:0 0 0 4px rgba(249,115,22,.18);}
+}
+@keyframes shake{
+  0%,100%{transform:translateX(0);}
+  25%{transform:translateX(-4px);}
+  50%{transform:translateX(4px);}
+  75%{transform:translateX(-2px);}
+}
+@keyframes toastIn{
+  from{opacity:0;transform:translate(-50%,10px);}
+  to{opacity:1;transform:translate(-50%,0);}
+}
+@keyframes toastOut{
+  from{opacity:1;transform:translate(-50%,0);}
+  to{opacity:0;transform:translate(-50%,10px);}
+}
+@keyframes viewerBgIn{
+  from{opacity:0;backdrop-filter:blur(0);}
+  to{opacity:1;backdrop-filter:blur(6px);}
+}
+@keyframes viewerBgOut{
+  from{opacity:1;backdrop-filter:blur(6px);}
+  to{opacity:0;backdrop-filter:blur(0);}
+}
+@keyframes viewerFade{
+  from{opacity:0;transform:scale(.96);filter:blur(6px);}
+  to{opacity:1;transform:scale(1);filter:blur(0);}
+}
+@keyframes viewerSlideLeft{
+  from{opacity:0;transform:translateX(30px);filter:blur(6px);}
+  to{opacity:1;transform:translateX(0);filter:blur(0);}
+}
+@keyframes viewerSlideRight{
+  from{opacity:0;transform:translateX(-30px);filter:blur(6px);}
+  to{opacity:1;transform:translateX(0);filter:blur(0);}
+}
+@keyframes plusGlow{
+  0%,100%{transform:translateY(0) scale(1);box-shadow:0 12px 30px rgba(249,115,22,.7);}
+  50%{transform:translateY(-2px) scale(1.04);box-shadow:0 18px 40px rgba(249,115,22,.9);}
+}
+@keyframes sharePulse{
+  0%,100%{transform:translateY(0);box-shadow:0 10px 24px rgba(15,23,42,.9);}
+  50%{transform:translateY(-1px);box-shadow:0 16px 32px rgba(15,23,42,1);}
+}
+@keyframes viewerPillBounce{
+  0%{transform:translateY(0) scaleX(1);}
+  30%{transform:translateY(-2px) scaleX(1.04);}
+  60%{transform:translateY(1px) scaleX(.98);}
+  100%{transform:translateY(0) scaleX(1);}
+}
+.anim-enter{animation:modalFadeIn .28s ease-out}
+.anim-leave{animation:toastOut .18s ease-in forwards;}
+@media(max-width:900px){
+  header{
+    height:220px;
+    padding:18px 18px 24px;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:18px;
+  }
+  .header-title{font-size:26px;letter-spacing:.14em}
+  .top-right{align-self:flex-end}
+  main{
+    padding:18px 14px 26px;
+    margin:-32px auto 0;
+  }
+  .viewer-arrow-left{left:8px;}
+  .viewer-arrow-right{right:8px;}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-left">
+    <div class="header-tagline">NIGGA BOY THE PHOTO</div>
+    <div class="header-title"><span>PHOTO</span> BY.เด็กRIE</div>
+  </div>
+  <div class="top-right">
+    <div id="userInfo">Guest</div>
+    <button id="loginButton" class="login-btn"><span>LOGIN</span><span>⤴</span></button>
+    <button id="logoutButton" class="logout-btn" style="display:none"><span>LOGOUT</span></button>
+  </div>
+</header>
+
+<main>
+  <div class="layout">
+    <section>
+      <div id="albumsSection" class="albums-panel">
+        <div class="section-header">
+          <div>
+            <div class="section-title">All my Albums</div>
+          </div>
+          <button id="createAlbumButton" class="btn-primary" style="display:none">
+            <span>NEW ALBUM</span><span>＋</span>
+          </button>
+        </div>
+        <div id="albumsGrid" class="albums-grid"></div>
+      </div>
+
+      <div id="albumViewSection" class="album-view">
+        <div class="back-row">
+          <div class="back-link" id="backToAlbums">
+            <span class="icon">←</span><span>BACK TO ALBUMS</span>
+          </div>
+          <button id="albumShareTop" class="share-btn" type="button">
+            <img src="https://cdn-icons-png.flaticon.com/512/52/52049.png" alt="share"/>
+            <span>SHARE</span>
+          </button>
+        </div>
+        <div class="album-header-line">
+          <div class="album-header-main">
+            <h2 id="albumTitle"></h2>
+            <div class="album-header-sub" id="albumSubtitle"></div>
+          </div>
+          <div class="album-header-actions">
+            <div class="album-header-buttons">
+              <button id="toggleSelectButton" class="header-select-btn" type="button" style="display:none">เลือก</button>
+              <button id="bulkDeleteButton" class="header-delete-btn" type="button" style="display:none">ลบที่เลือก</button>
+            </div>
+          </div>
+        </div>
+        <div id="photosGrid" class="photos-grid"></div>
+      </div>
+    </section>
+  </div>
+</main>
+<div id="modalRoot"></div>
+<div id="toastRoot"></div>
+<div id="viewerRoot"></div>
+
+<script>
+const SHARE_ICON_URL="https://cdn-icons-png.flaticon.com/512/52/52049.png";
+let currentUser=null;
+let albums=[];
+let currentAlbumId=null;
+const photosCache={};
+let isUploading=false;
+let viewerState=null;
+let viewerTouchStartX=null;
+let selectionMode=false;
+const selectedPhotoIds=new Set();
+const userInfoEl=document.getElementById("userInfo");
+const loginButton=document.getElementById("loginButton");
+const logoutButton=document.getElementById("logoutButton");
+const createAlbumButton=document.getElementById("createAlbumButton");
+const albumsGrid=document.getElementById("albumsGrid");
+const albumsSection=document.getElementById("albumsSection");
+const albumViewSection=document.getElementById("albumViewSection");
+const albumTitleEl=document.getElementById("albumTitle");
+const albumSubtitleEl=document.getElementById("albumSubtitle");
+const photosGrid=document.getElementById("photosGrid");
+const modalRoot=document.getElementById("modalRoot");
+const toastRoot=document.getElementById("toastRoot");
+const viewerRoot=document.getElementById("viewerRoot");
+const backToAlbums=document.getElementById("backToAlbums");
+const albumShareTop=document.getElementById("albumShareTop");
+const toggleSelectButton=document.getElementById("toggleSelectButton");
+const bulkDeleteButton=document.getElementById("bulkDeleteButton");
+
+function isAdmin(){return currentUser&&currentUser.role==="ADMIN";}
+function showToast(msg,type){
+  const d=document.createElement("div");
+  d.className="toast"+(type?(" toast-"+type):"");
+  d.textContent=msg;
+  toastRoot.appendChild(d);
+  setTimeout(()=>d.classList.add("toast-hide"),2300);
+  setTimeout(()=>{d.remove()},2700);
+}
+function shakeModal(){
+  const m=document.querySelector(".modal");
+  if(!m)return;
+  m.classList.remove("modal-shake");
+  void m.offsetWidth;
+  m.classList.add("modal-shake");
+}
+function showConfirm(message,onConfirm){
+  modalRoot.innerHTML="";
+  const b=document.createElement("div");
+  b.className="modal-backdrop";
+  b.innerHTML='<div class="modal"><h3>ยืนยันดิวะ</h3><div style="font-size:13px;margin-bottom:10px;">'+message+'</div><div class="modal-actions"><button class="btn-primary ghost" id="confirmCancel"><span>ยกเลิก</span></button><button class="btn-primary" id="confirmOk"><span>ยืนยัน</span></button></div></div>';
+  modalRoot.appendChild(b);
+  document.getElementById("confirmCancel").onclick=()=>{modalRoot.innerHTML=""};
+  document.getElementById("confirmOk").onclick=()=>{modalRoot.innerHTML="";if(onConfirm)onConfirm();};
+}
+async function fetchSession(){
+  const r=await fetch("/api/session");
+  const d=await r.json();
+  currentUser=d.user;
+  renderUserInfo();
+}
+function updateSelectionUI(){
+  if(!toggleSelectButton||!bulkDeleteButton)return;
+  const canAdmin=isAdmin();
+  if(!canAdmin){
+    selectionMode=false;
+    selectedPhotoIds.clear();
+  }
+  toggleSelectButton.style.display=canAdmin&&currentAlbumId?"inline-flex":"none";
+  toggleSelectButton.textContent=selectionMode?"ยกเลิกเลือก":"เลือก";
+  if(canAdmin&&selectionMode&&selectedPhotoIds.size>0){
+    bulkDeleteButton.style.display="inline-flex";
+    bulkDeleteButton.textContent="ลบที่เลือก ("+selectedPhotoIds.size+")";
+  }else{
+    bulkDeleteButton.style.display="none";
+  }
+}
+function renderUserInfo(){
+  if(!currentUser){
+    userInfoEl.textContent="Guest";
+    loginButton.style.display="inline-flex";
+    logoutButton.style.display="none";
+    createAlbumButton.style.display="none";
+  }else{
+    userInfoEl.textContent=currentUser.name+" ("+currentUser.role+")";
+    loginButton.style.display="none";
+    logoutButton.style.display="inline-flex";
+    createAlbumButton.style.display=isAdmin()?"inline-flex":"none";
+  }
+  updateSelectionUI();
+}
+function openLoginModal(){
+  modalRoot.innerHTML="";
+  const b=document.createElement("div");
+  b.className="modal-backdrop";
+  b.innerHTML='<div class="modal"><h3>เข้าสู่ระบบ</h3><div class="field"><label>ชื่อผู้ใช้</label><input type="text" id="loginName" placeholder="IDK"/></div><div class="field"><label>รหัสผ่าน</label><input type="password" id="loginPass"/></div><div class="error" id="loginError"></div><div class="modal-actions"><button class="btn-primary ghost" id="loginCancel"><span>ยกเลิก</span></button><button class="btn-primary" id="loginSubmit"><span>เข้าสู่ระบบ</span></button></div></div>';
+  modalRoot.appendChild(b);
+  document.getElementById("loginCancel").onclick=()=>{modalRoot.innerHTML=""};
+  document.getElementById("loginSubmit").onclick=doLogin;
+}
+async function doLogin(){
+  const n=document.getElementById("loginName").value.trim();
+  const p=document.getElementById("loginPass").value;
+  const e=document.getElementById("loginError");
+  e.textContent="";
+  try{
+    const r=await fetch("/api/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:n,pass:p})});
+    if(!r.ok){
+      const d=await r.json().catch(()=>({}));
+      e.textContent=d.error||"เข้าสู่ระบบไม่สำเร็จ";
+      shakeModal();
+      return;
+    }
+    const j=await r.json();
+    currentUser=j.user;
+    renderUserInfo();
+    modalRoot.innerHTML="";
+    showToast("เข้าสู่ระบบสำเร็จ","success");
+    loadAlbums();
+  }catch{
+    e.textContent="เกิดข้อผิดพลาดในการเชื่อมต่อ";
+    shakeModal();
+  }
+}
+async function doLogout(){
+  await fetch("/api/logout",{method:"POST"});
+  currentUser=null;
+  renderUserInfo();
+  albumsSection.style.display="block";
+  albumViewSection.style.display="none";
+  currentAlbumId=null;
+  selectionMode=false;
+  selectedPhotoIds.clear();
+  updateSelectionUI();
+  history.replaceState(null,"","/");
+  showToast("ออกจากระบบแล้ว","success");
+  loadAlbums();
+}
+async function loadAlbums(){
+  const r=await fetch("/api/albums?withPreview=1");
+  albums=await r.json();
+  renderAlbums();
+}
+function titleToSlug(title){
+  return encodeURIComponent(title.trim().replace(/\s+/g,"-"));
+}
+function slugToTitle(slug){
+  return decodeURIComponent(slug).replace(/-/g," ");
+}
+function buildAlbumPathFromTitle(title){
+  return "/"+titleToSlug(title);
+}
+function buildPhotoPath(title,photoId){
+  return "/"+titleToSlug(title)+"/"+encodeURIComponent(photoId);
+}
+async function shareLink(title,url){
+  try{
+    if(navigator.share){
+      await navigator.share({title:title,url:url});
+    }else if(navigator.clipboard){
+      await navigator.clipboard.writeText(url);
+      showToast("คัดลอกลิงก์แล้ว","success");
+    }else{
+      showToast("ไม่รองรับการแชร์อัตโนมัติ","error");
+    }
+  }catch{
+    showToast("แชร์ไม่สำเร็จ","error");
+  }
+}
+async function shareAlbum(album){
+  const url=window.location.origin+buildAlbumPathFromTitle(album.title);
+  await shareLink(album.title,url);
+}
+async function shareCurrentPhoto(){
+  if(!viewerState)return;
+  const list=photosCache[viewerState.albumId]||[];
+  if(!list.length)return;
+  const p=list[viewerState.index];
+  const album=albums.find(a=>a.id===viewerState.albumId);
+  if(!album)return;
+  const url=window.location.origin+buildPhotoPath(album.title,p.id);
+  await shareLink(album.title,url);
+}
+function renderAlbums(){
+  albumsGrid.innerHTML="";
+  if(!albums.length){
+    const d=document.createElement("div");
+    d.className="empty-text";
+    albumsGrid.appendChild(d);
+    return;
+  }
+  const canAdmin=isAdmin();
+  albums.forEach(a=>{
+    const c=document.createElement("div");
+    c.className="album-card";
+    const t=document.createElement("div");
+    t.className="album-thumb";
+    if(a.previewUrl){
+      const i=document.createElement("img");
+      i.src=a.previewUrl;
+      i.loading="lazy";
+      t.appendChild(i);
+      const o=document.createElement("div");
+      o.className="album-thumb-overlay";
+      t.appendChild(o);
+    }
+    const lab=document.createElement("div");
+    lab.className="album-thumb-label";
+    lab.textContent="Album";
+    t.appendChild(lab);
+    const info=document.createElement("div");
+    info.className="album-info";
+    const ti=document.createElement("div");
+    ti.className="album-title";
+    ti.textContent=a.title;
+    const m=document.createElement("div");
+    m.className="album-meta";
+    const dt=new Date(a.createdAt||Date.now());
+    const left=document.createElement("span");
+    left.innerHTML="<span>●</span> "+dt.toLocaleString("th-TH");
+    const right=document.createElement("div");
+    right.style.display="flex";
+    right.style.alignItems="center";
+    right.style.gap="4px";
+    const shareBtn=document.createElement("button");
+    shareBtn.type="button";
+    shareBtn.className="share-btn album-share-inline";
+    shareBtn.title="แชร์ลิงก์อัลบัมนี้";
+    shareBtn.innerHTML='<img src="'+SHARE_ICON_URL+'" alt="share"/><span>SHARE</span>';
+    shareBtn.onclick=(ev)=>{
+      ev.stopPropagation();
+      shareAlbum(a);
+    };
+    right.appendChild(shareBtn);
+    m.appendChild(left);
+    m.appendChild(right);
+    info.appendChild(ti);
+    info.appendChild(m);
+    c.appendChild(t);
+    c.appendChild(info);
+    c.onclick=()=>openAlbum(a.id);
+    if(canAdmin){
+      const rename=document.createElement("button");
+      rename.className="album-rename-btn";
+      rename.textContent="✎";
+      rename.title="แก้ไขชื่ออัลบัม";
+      rename.onclick=(ev)=>{
+        ev.stopPropagation();
+        openRenameAlbumModal(a);
+      };
+      c.appendChild(rename);
+      const del=document.createElement("button");
+      del.className="album-delete-btn";
+      del.textContent="✕";
+      del.title="ลบอัลบัมนี้";
+      del.onclick=(ev)=>{
+        ev.stopPropagation();
+        deleteAlbum(a.id,c);
+      };
+      c.appendChild(del);
+    }
+    albumsGrid.appendChild(c);
+    requestAnimationFrame(()=>c.classList.add("anim-enter"));
+  });
+}
+function openCreateAlbumModal(){
+  modalRoot.innerHTML="";
+  const b=document.createElement("div");
+  b.className="modal-backdrop";
+  b.innerHTML='<div class="modal"><h3>สร้างอัลบัมใหม่</h3><div class="field"><label>ชื่ออัลบัม</label><input type="text" id="albumName" placeholder="ชื่อห้อง"/></div><div class="error" id="albumError"></div><div class="modal-actions"><button class="btn-primary ghost" id="albumCancel"><span>ยกเลิก</span></button><button class="btn-primary" id="albumCreate"><span>สร้าง</span></button></div></div>';
+  modalRoot.appendChild(b);
+  document.getElementById("albumCancel").onclick=()=>{modalRoot.innerHTML=""};
+  document.getElementById("albumCreate").onclick=doCreateAlbumFromModal;
+}
+async function doCreateAlbumFromModal(){
+  const nameEl=document.getElementById("albumName");
+  const err=document.getElementById("albumError");
+  const title=nameEl.value.trim();
+  err.textContent="";
+  if(!title){
+    err.textContent="กรุณากรอกชื่ออัลบัม";
+    shakeModal();
+    return;
+  }
+  try{
+    const r=await fetch("/api/albums",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({title})});
+    if(!r.ok){
+      const d=await r.json().catch(()=>({}));
+      err.textContent=d.error||"สร้างอัลบัมไม่สำเร็จ";
+      shakeModal();
+      return;
+    }
+    const a=await r.json();
+    albums.push(a);
+    renderAlbums();
+    modalRoot.innerHTML="";
+    showToast("สร้างอัลบัมใหม่แล้ว","success");
+  }catch{
+    err.textContent="เกิดข้อผิดพลาดในการสร้างอัลบัม";
+    shakeModal();
+  }
+}
+function openRenameAlbumModal(album){
+  modalRoot.innerHTML="";
+  const b=document.createElement("div");
+  b.className="modal-backdrop";
+  b.innerHTML='<div class="modal"><h3>แก้ไขชื่ออัลบัม</h3><div class="field"><label>ชื่ออัลบัมใหม่</label><input type="text" id="renameAlbumName"/></div><div class="error" id="renameAlbumError"></div><div class="modal-actions"><button class="btn-primary ghost" id="renameCancel"><span>ยกเลิก</span></button><button class="btn-primary" id="renameOk"><span>บันทึก</span></button></div></div>';
+  modalRoot.appendChild(b);
+  const input=document.getElementById("renameAlbumName");
+  const err=document.getElementById("renameAlbumError");
+  input.value=album.title;
+  document.getElementById("renameCancel").onclick=()=>{modalRoot.innerHTML=""};
+  document.getElementById("renameOk").onclick=()=>doRenameAlbum(album,input,err);
+}
+async function doRenameAlbum(album,inputEl,errEl){
+  const newTitle=inputEl.value.trim();
+  errEl.textContent="";
+  if(!newTitle){
+    errEl.textContent="กรุณากรอกชื่ออัลบัม";
+    shakeModal();
+    return;
+  }
+  try{
+    const r=await fetch("/api/albums/"+encodeURIComponent(album.id),{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify({title:newTitle})});
+    if(!r.ok){
+      const d=await r.json().catch(()=>({}));
+      errEl.textContent=d.error||"แก้ไขชื่อไม่สำเร็จ";
+      shakeModal();
+      return;
+    }
+    const updated=await r.json();
+    const idx=albums.findIndex(a=>a.id===album.id);
+    if(idx!==-1){
+      albums[idx].title=updated.title||newTitle;
+    }
+    modalRoot.innerHTML="";
+    renderAlbums();
+    if(currentAlbumId===album.id){
+      albumTitleEl.textContent=updated.title||newTitle;
+      const path=buildAlbumPathFromTitle(updated.title||newTitle);
+      history.replaceState(null,"",path);
+    }
+    showToast("แก้ไขชื่ออัลบัมสำเร็จ","success");
+  }catch{
+    errEl.textContent="เกิดข้อผิดพลาดในการแก้ไขชื่อ";
+    shakeModal();
+  }
+}
+async function deleteAlbum(id,cardEl){
+  showConfirm("ต้องการลบป่าวคับน้องงง",async()=>{
+    try{
+      const r=await fetch("/api/albums/"+encodeURIComponent(id),{method:"DELETE"});
+      if(!r.ok){
+        const d=await r.json().catch(()=>({}));
+        showToast("ลบอัลบัมไม่สำเร็จ: "+(d.error||r.status),"error");
+        return;
+      }
+      if(cardEl){
+        cardEl.classList.add("anim-leave");
+        setTimeout(()=>{
+          albums=albums.filter(a=>a.id!==id);
+          renderAlbums();
+        },220);
+      }else{
+        albums=albums.filter(a=>a.id!==id);
+        renderAlbums();
+      }
+      showToast("ลบอัลบัมเรียบร้อย","success");
+    }catch{
+      showToast("เกิดข้อผิดพลาดในการลบอัลบัม","error");
+    }
+  });
+}
+async function openAlbum(id,opts){
+  currentAlbumId=id;
+  selectionMode=false;
+  selectedPhotoIds.clear();
+  updateSelectionUI();
+  const a=albums.find(x=>x.id===id);
+  if(!a)return;
+  albumsSection.style.display="none";
+  albumViewSection.style.display="block";
+  albumTitleEl.textContent=a.title;
+  const dt=new Date(a.createdAt||Date.now());
+  albumSubtitleEl.textContent="สร้างเมื่อ "+dt.toLocaleString("th-TH");
+  const path=buildAlbumPathFromTitle(a.title);
+  if(!opts||!opts.skipPush){
+    history.replaceState(null,"",path);
+  }
+  await loadPhotos(id);
+}
+function createUploadCard(){
+  const card=document.createElement("div");
+  card.className="upload-card";
+  card.id="uploadCard";
+  card.innerHTML='<div class="upload-card-main-icon">+</div><input type="file" id="fileInput" accept="image/*" multiple/>';
+  const fi=card.querySelector("#fileInput");
+  card.onclick=e=>{
+    if(e.target===card||e.target.classList.contains("upload-card-main-icon"))fi.click();
+  };
+  fi.onchange=()=>{
+    if(fi.files&&fi.files.length){
+      handleFiles(fi.files);
+      fi.value="";
+    }
+  };
+  card.addEventListener("dragover",e=>{
+    e.preventDefault();
+    card.classList.add("dragover");
+  });
+  card.addEventListener("dragleave",e=>{
+    e.preventDefault();
+    card.classList.remove("dragover");
+  });
+  card.addEventListener("drop",e=>{
+    e.preventDefault();
+    card.classList.remove("dragover");
+    if(e.dataTransfer.files&&e.dataTransfer.files.length)handleFiles(e.dataTransfer.files);
+  });
+  return card;
+}
+function showSkeleton(count){
+  photosGrid.innerHTML="";
+  for(let i=0;i<count;i++){
+    const c=document.createElement("div");
+    c.className="photo-card skeleton";
+    const img=document.createElement("img");
+    c.appendChild(img);
+    const meta=document.createElement("div");
+    meta.className="photo-meta";
+    c.appendChild(meta);
+    photosGrid.appendChild(c);
+  }
+}
+function renderPhotos(list,albumId){
+  const aid=albumId||currentAlbumId;
+  photosGrid.innerHTML="";
+  const canAdmin=isAdmin();
+  if(canAdmin){
+    const uploadCard=createUploadCard();
+    photosGrid.appendChild(uploadCard);
+  }
+  if(!list.length){
+    if(!canAdmin){
+      const e=document.createElement("div");
+      e.className="empty-text";
+      e.textContent="ยังไม่มีรูปในอัลบัมนี้";
+      photosGrid.appendChild(e);
+    }
+    updateSelectionUI();
+    return;
+  }
+  list.forEach((p,i)=>{
+    const card=document.createElement("div");
+    card.className="photo-card";
+    const img=document.createElement("img");
+    img.src=p.url;
+    img.loading="lazy";
+    img.onload=()=>img.classList.add("photo-loaded");
+    const meta=document.createElement("div");
+    meta.className="photo-meta";
+    const t=document.createElement("span");
+    t.textContent=new Date(p.uploadedAt).toLocaleString("th-TH");
+    const idx=document.createElement("span");
+    idx.className="index";
+    idx.textContent="#"+(i+1);
+    meta.appendChild(t);
+    meta.appendChild(idx);
+    card.appendChild(img);
+    card.appendChild(meta);
+    card.onclick=ev=>{
+      if(ev.target.classList.contains("photo-delete-btn")||ev.target.classList.contains("photo-select-toggle"))return;
+      openViewer(aid,i);
+    };
+    if(canAdmin){
+      if(selectionMode){
+        const selBtn=document.createElement("button");
+        selBtn.type="button";
+        selBtn.className="photo-select-toggle"+(selectedPhotoIds.has(p.id)?" selected":"");
+        selBtn.textContent=selectedPhotoIds.has(p.id)?"✓":"○";
+        selBtn.onclick=ev=>{
+          ev.stopPropagation();
+          togglePhotoSelection(p.id);
+        };
+        card.appendChild(selBtn);
+      }
+      if(p.id){
+        const del=document.createElement("button");
+        del.className="photo-delete-btn";
+        del.textContent="✕";
+        del.title="ลบรูปนี้";
+        del.onclick=ev=>{
+          ev.stopPropagation();
+          deletePhoto(aid,p.id,card);
+        };
+        card.appendChild(del);
+      }
+    }
+    photosGrid.appendChild(card);
+    requestAnimationFrame(()=>card.classList.add("anim-enter"));
+  });
+  updateSelectionUI();
+}
+async function loadPhotos(albumId,opts){
+  const force=opts&&opts.force;
+  if(!force&&photosCache[albumId]){
+    renderPhotos(photosCache[albumId],albumId);
+    return;
+  }
+  showSkeleton(6);
+  try{
+    const r=await fetch("/api/albums/"+encodeURIComponent(albumId)+"/photos");
+    if(!r.ok){
+      photosGrid.textContent="โหลดรูปไม่สำเร็จ";
+      showToast("โหลดรูปไม่สำเร็จ","error");
+      return;
+    }
+    const d=await r.json();
+    const ps=d.photos||[];
+    photosCache[albumId]=ps;
+    renderPhotos(ps,albumId);
+  }catch{
+    photosGrid.textContent="โหลดรูปไม่สำเร็จ";
+    showToast("โหลดรูปไม่สำเร็จ","error");
+  }
+}
+function setUploadState(on){
+  isUploading=on;
+  const card=document.getElementById("uploadCard");
+  if(!card)return;
+  if(on)card.classList.add("uploading");
+  else card.classList.remove("uploading");
+}
+function handleFiles(fileList){
+  if(!currentAlbumId)return;
+  const files=Array.from(fileList);
+  if(!files.length)return;
+  uploadImages(files);
+}
+async function uploadImages(files){
+  setUploadState(true);
+  try{
+    for(const f of files){
+      await uploadSingleImage(f);
+    }
+    await loadPhotos(currentAlbumId,{force:true});
+    showToast("อัปโหลดรูปเรียบร้อย","success");
+  }finally{
+    setUploadState(false);
+  }
+}
+async function uploadSingleImage(file){
+  if(!currentAlbumId)return;
+  const form=new FormData();
+  form.append("image",file);
+  const r=await fetch("/api/albums/"+encodeURIComponent(currentAlbumId)+"/upload",{method:"POST",body:form});
+  if(!r.ok){
+    const d=await r.json().catch(()=>({}));
+    showToast("อัปโหลดรูปไม่สำเร็จ: "+(d.error||r.status),"error");
+  }
+}
+async function deletePhoto(albumId,photoId,cardEl){
+  showConfirm("ต้องการลบป่าวน้องงงง",async()=>{
+    try{
+      const r=await fetch("/api/albums/"+encodeURIComponent(albumId)+"/photos/"+encodeURIComponent(photoId),{method:"DELETE"});
+      if(!r.ok){
+        const d=await r.json().catch(()=>({}));
+        showToast("ลบรูปไม่สำเร็จ: "+(d.error||r.status),"error");
+        return;
+      }
+      if(photosCache[albumId]){
+        photosCache[albumId]=photosCache[albumId].filter(p=>p.id!==photoId);
+      }
+      if(selectedPhotoIds.has(photoId)){
+        selectedPhotoIds.delete(photoId);
+      }
+      if(cardEl){
+        cardEl.classList.add("anim-leave");
+        setTimeout(()=>loadPhotos(albumId),220);
+      }else{
+        await loadPhotos(albumId);
+      }
+      closeViewer();
+      updateSelectionUI();
+      showToast("ลบรูปเรียบร้อย","success");
+    }catch{
+      showToast("เกิดข้อผิดพลาดในการลบรูป","error");
+    }
+  });
+}
+function togglePhotoSelection(photoId){
+  if(selectedPhotoIds.has(photoId))selectedPhotoIds.delete(photoId);
+  else selectedPhotoIds.add(photoId);
+  const albumId=currentAlbumId;
+  if(albumId&&photosCache[albumId]){
+    renderPhotos(photosCache[albumId],albumId);
+  }else{
+    updateSelectionUI();
+  }
+}
+async function deleteSelectedPhotos(){
+  const albumId=currentAlbumId;
+  if(!albumId||!selectedPhotoIds.size)return;
+  const ids=Array.from(selectedPhotoIds);
+  showConfirm("ต้องการลบ "+ids.length+" รูปที่เลือกใช่ไหม?",async()=>{
+    try{
+      for(const pid of ids){
+        const r=await fetch("/api/albums/"+encodeURIComponent(albumId)+"/photos/"+encodeURIComponent(pid),{method:"DELETE"});
+        if(!r.ok){
+          const d=await r.json().catch(()=>({}));
+          showToast("ลบรูปไม่สำเร็จ: "+(d.error||r.status),"error");
+          return;
+        }
+        if(photosCache[albumId]){
+          photosCache[albumId]=photosCache[albumId].filter(p=>p.id!==pid);
+        }
+      }
+      selectedPhotoIds.clear();
+      selectionMode=false;
+      await loadPhotos(albumId,{force:true});
+      updateSelectionUI();
+      closeViewer();
+      showToast("ลบรูปที่เลือกเรียบร้อย","success");
+    }catch{
+      showToast("เกิดข้อผิดพลาดในการลบรูปที่เลือก","error");
+    }
+  });
+}
+function openViewer(albumId,index){
+  const list=photosCache[albumId]||[];
+  if(!list.length)return;
+  viewerState={albumId,index};
+  renderViewer("fade");
+}
+function closeViewer(){
+  const b=viewerRoot.querySelector(".viewer-backdrop");
+  if(!b){
+    viewerState=null;
+    viewerRoot.innerHTML="";
+    return;
+  }
+  b.classList.add("viewer-closing");
+  setTimeout(()=>{
+    viewerState=null;
+    viewerRoot.innerHTML="";
+    const album=albums.find(a=>a.id===currentAlbumId);
+    if(album){
+      const path=buildAlbumPathFromTitle(album.title);
+      history.replaceState(null,"",path);
+    }
+  },220);
+}
+function moveViewer(delta){
+  if(!viewerState)return;
+  const list=photosCache[viewerState.albumId]||[];
+  if(!list.length)return;
+  let i=viewerState.index+delta;
+  if(i<0)i=list.length-1;
+  if(i>=list.length)i=0;
+  viewerState.index=i;
+  renderViewer(delta>0?"left":"right");
+}
+async function downloadCurrentPhoto(){
+  if(!viewerState)return;
+  const list=photosCache[viewerState.albumId]||[];
+  if(!list.length)return;
+  const p=list[viewerState.index];
+  try{
+    const res=await fetch(p.url);
+    if(!res.ok)throw new Error("fetch failed");
+    const blob=await res.blob();
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement("a");
+    a.href=url;
+    a.download="photo_"+(viewerState.index+1)+".jpg";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1500);
+  }catch{
+    showToast("ดาวน์โหลดรูปไม่สำเร็จ","error");
+  }
+}
+function renderViewer(anim){
+  const st=viewerState;
+  if(!st){
+    viewerRoot.innerHTML="";
+    return;
+  }
+  const list=photosCache[st.albumId]||[];
+  if(!list.length){
+    viewerRoot.innerHTML="";
+    return;
+  }
+  const photo=list[st.index];
+  const album=albums.find(a=>a.id===st.albumId);
+  if(album){
+    const path=buildPhotoPath(album.title,photo.id);
+    history.replaceState(null,"",path);
+  }
+  viewerRoot.innerHTML="";
+  const b=document.createElement("div");
+  b.className="viewer-backdrop";
+  b.innerHTML='<div class="viewer-inner"><div class="viewer-topbar"><button class="viewer-photo-delete" title="ลบรูป">X</button><div class="viewer-pill-group"><div class="viewer-pill-highlight"></div><button class="viewer-photo-share viewer-pill-btn" type="button">Share</button><button class="viewer-download viewer-pill-btn" type="button">Download</button></div><button class="viewer-close">✕</button></div><div class="viewer-arrow viewer-arrow-left">⟨</div><div class="viewer-img-wrap"><img class="viewer-img" src="'+photo.url+'"/></div><div class="viewer-arrow viewer-arrow-right">⟩</div></div>';
+  viewerRoot.appendChild(b);
+  const img=b.querySelector(".viewer-img");
+  if(anim==="left")img.classList.add("viewer-slide-left");
+  else if(anim==="right")img.classList.add("viewer-slide-right");
+  else img.classList.add("viewer-fade");
+  b.onclick=e=>{
+    if(e.target===b)closeViewer();
+  };
+  b.querySelector(".viewer-close").onclick=e=>{
+    e.stopPropagation();
+    closeViewer();
+  };
+  b.querySelector(".viewer-arrow-left").onclick=e=>{
+    e.stopPropagation();
+    moveViewer(-1);
+  };
+  b.querySelector(".viewer-arrow-right").onclick=e=>{
+    e.stopPropagation();
+    moveViewer(1);
+  };
+  b.querySelector(".viewer-download").onclick=e=>{
+    e.stopPropagation();
+    downloadCurrentPhoto();
+  };
+  b.querySelector(".viewer-photo-share").onclick=e=>{
+    e.stopPropagation();
+    shareCurrentPhoto();
+  };
+  b.querySelector(".viewer-photo-delete").onclick=e=>{
+    e.stopPropagation();
+    const list2=photosCache[st.albumId]||[];
+    const p2=list2[st.index];
+    if(!p2)return;
+    deletePhoto(st.albumId,p2.id,null);
+  };
+  b.addEventListener("touchstart",e=>{
+    viewerTouchStartX=e.touches[0].clientX;
+  });
+  b.addEventListener("touchend",e=>{
+    if(viewerTouchStartX==null)return;
+    const dx=e.changedTouches[0].clientX-viewerTouchStartX;
+    viewerTouchStartX=null;
+    if(Math.abs(dx)<40)return;
+    if(dx<0)moveViewer(1);else moveViewer(-1);
+  });
+}
+document.addEventListener("keydown",e=>{
+  if(!viewerState)return;
+  if(e.key==="Escape")closeViewer();
+  else if(e.key==="ArrowRight")moveViewer(1);
+  else if(e.key==="ArrowLeft")moveViewer(-1);
+});
+function parseInitialRoute(){
+  const rawPath=window.location.pathname.replace(/^\/+|\/+$/g,"");
+  if(!rawPath)return null;
+  const parts=rawPath.split("/");
+  const slug=parts[0]||null;
+  const photoId=parts[1]||null;
+  if(!slug)return null;
+  return{slug,photoId};
+}
+backToAlbums.onclick=()=>{
+  albumsSection.style.display="block";
+  albumViewSection.style.display="none";
+  currentAlbumId=null;
+  viewerState=null;
+  viewerRoot.innerHTML="";
+  selectionMode=false;
+  selectedPhotoIds.clear();
+  updateSelectionUI();
+  history.replaceState(null,"","/");
+};
+loginButton.onclick=openLoginModal;
+logoutButton.onclick=doLogout;
+createAlbumButton.onclick=openCreateAlbumModal;
+albumShareTop.onclick=()=>{
+  if(!currentAlbumId)return;
+  const album=albums.find(a=>a.id===currentAlbumId);
+  if(!album)return;
+  shareAlbum(album);
+};
+toggleSelectButton.onclick=()=>{
+  if(!isAdmin())return;
+  selectionMode=!selectionMode;
+  if(!selectionMode)selectedPhotoIds.clear();
+  const albumId=currentAlbumId;
+  if(albumId&&photosCache[albumId]){
+    renderPhotos(photosCache[albumId],albumId);
+  }else{
+    updateSelectionUI();
+  }
+};
+bulkDeleteButton.onclick=()=>{
+  if(!isAdmin())return;
+  deleteSelectedPhotos();
+};
+const initialRoute=parseInitialRoute();
+(async()=>{
+  await fetchSession();
+  await loadAlbums();
+  if(initialRoute){
+    const slug=initialRoute.slug;
+    const photoId=initialRoute.photoId;
+    let album=albums.find(a=>titleToSlug(a.title)===slug);
+    if(!album){
+      album=albums.find(a=>a.id===slug);
+    }
+    if(album){
+      await openAlbum(album.id,{skipPush:true});
+      if(photoId){
+        const list=photosCache[album.id]||[];
+        let idx=list.findIndex(p=>String(p.id)===photoId||String(p.id).startsWith(photoId+":"));
+        if(idx<0)idx=0;
+        if(list.length)openViewer(album.id,idx);
+      }
+    }
+  }
+})();
+</script>
+</body>
+</html>
